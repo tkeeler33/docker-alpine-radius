@@ -17,4 +17,9 @@ EXPOSE \
     1813 \
     18120
 
-CMD radiusd -f
+RUN echo 'echo "$USERNAME Cleartext-Password := \"$PASSWORD\"" > /etc/raddb/users'>start_radius.sh && \
+	echo 'echo -e "client $DEVICE_NAME {\n ipaddr = $DEVICE_HOSTNAME\n secret = $DEVICE_SECRET\n}" > /etc/raddb/clients.conf'>>start_radius.sh && \
+	echo 'radiusd -f -X'>>start_radius.sh && \
+	chmod +x start_radius.sh
+
+CMD ./start_radius.sh
