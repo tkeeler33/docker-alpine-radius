@@ -1,4 +1,4 @@
-FROM alpine:3.1
+FROM alpine:3.6
 MAINTAINER Marcel Maatkamp <m.maatkamp@gmail.com>
 
 WORKDIR /projects
@@ -14,7 +14,7 @@ VOLUME \
 
 EXPOSE \
     1812/udp \
-    1813 \
+    1813/udp \
     18120
 
 RUN echo 'echo "$USERNAME Cleartext-Password := \"$PASSWORD\"" > /etc/raddb/users'>start_radius.sh && \
@@ -23,3 +23,4 @@ RUN echo 'echo "$USERNAME Cleartext-Password := \"$PASSWORD\"" > /etc/raddb/user
 	chmod +x start_radius.sh
 
 CMD ./start_radius.sh
+
